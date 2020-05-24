@@ -37,7 +37,7 @@ public class Material extends ParentEntity{
     private User user;
 
     @ManyToOne
-    private Material material;
+    private Project project;
 
 
 }
