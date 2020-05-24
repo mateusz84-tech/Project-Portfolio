@@ -5,6 +5,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.matkoc.Approval_material.domain.model.Material;
+import pl.matkoc.Approval_material.domain.model.User;
 import pl.matkoc.Approval_material.domain.repository.UserRepository;
 import pl.matkoc.Approval_material.service.RegistrationService;
 
@@ -18,12 +19,13 @@ public class DefaultRegistrationService implements RegistrationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     @Transactional
     @Override
     public void register(RegistrationData registrationData) {
         log.debug("Dane do rejestracji: {}", registrationData);
-        Material user =  new Material();
+        User user =  new User();
+        user.setFirstName((registrationData.getFirstName()));
+        user.setLastName(registrationData.getLastName());
         user.setUsername(registrationData.getUsername());
         user.setPassword(passwordEncoder.encode(registrationData.getPassword()));
         user.setEmail(registrationData.getEmail());
@@ -33,5 +35,4 @@ public class DefaultRegistrationService implements RegistrationService {
         log.debug("Zapisano użytkownika: {}",user);
 
     }
-
 }

@@ -8,7 +8,7 @@ import javax.persistence.*;
 import java.time.LocalTime;
 
 @Entity
-@Table(name = "material")
+@Table(name = "materials")
 @Getter @Setter @ToString
 public class Material extends ParentEntity{
 
